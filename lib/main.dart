@@ -33,7 +33,15 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Manga Reader'),
+      ),
+      drawer: Drawer(),
+      body: Center(
+        child: Text('Test'),
+      ),
+    );
   }
 }
 
