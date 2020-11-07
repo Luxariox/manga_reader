@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_reader/home_list.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,9 +39,7 @@ class HomePage extends StatelessWidget {
         title: Text('Manga Reader'),
       ),
       drawer: Drawer(),
-      body: Center(
-        child: Text('Test'),
-      ),
+      body: HomeList(),
     );
   }
 }
