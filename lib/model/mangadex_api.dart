@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:manga_reader/model/chapter/chapter.dart';
+import 'package:manga_reader/model/chapter/response.dart';
 import 'package:manga_reader/model/chapter_list/data.dart';
 import 'package:manga_reader/model/chapter_list/response.dart';
 
@@ -26,5 +28,14 @@ class MangadexApi {
     }
 
     return result;
+  }
+
+  static Future<Chapter> getChapter(ChapterData chapterData) async {
+    var response = await _fetchAddress(
+        'https://mangadex.org/api/v2/chapter/${chapterData.id}');
+
+    var respData = ChapterResponse.fromJson(jsonDecode(response.body));
+
+    return respData.data;
   }
 }

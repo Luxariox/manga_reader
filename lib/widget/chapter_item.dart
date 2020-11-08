@@ -18,6 +18,9 @@ class ChapterItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(_getTitle()),
+      onTap: () {
+
+      },
     );
   }
 }
