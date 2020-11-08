@@ -3,6 +3,7 @@ import 'package:manga_reader/model/chapter_list/data.dart';
 import 'package:manga_reader/model/language_filter.dart';
 import 'package:manga_reader/model/mangadex_api.dart';
 import 'package:manga_reader/model/sorter.dart';
+import 'package:manga_reader/widget/chapter_item.dart';
 
 class HomeList extends StatelessWidget {
   @override
@@ -22,9 +23,7 @@ class HomeList extends StatelessWidget {
           return ListView.builder(
             itemCount: filteredData.length,
             itemBuilder: (context, i) {
-              return ListTile(
-                title: Text(filteredData[i].title),
-              );
+              return ChapterItem(chapter: filteredData[i]);
             },
           );
         } else {
