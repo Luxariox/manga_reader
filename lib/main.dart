@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manga_reader/pages/home_list.dart';
+import 'package:manga_reader/page_selection.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,15 +15,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: PageSelection(),
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return HomeList();
   }
 }
 

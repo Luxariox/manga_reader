@@ -6,6 +6,10 @@ import 'package:manga_reader/model/sorter.dart';
 import 'package:manga_reader/widget/chapter_item.dart';
 
 class HomeList extends StatefulWidget {
+  final Drawer drawer;
+
+  HomeList({@required this.drawer});
+
   @override
   _HomeListState createState() => _HomeListState();
 }
@@ -33,7 +37,7 @@ class _HomeListState extends State<HomeList> {
           }),
         ],
       ),
-      drawer: Drawer(),
+      drawer: widget.drawer,
       body: FutureBuilder(
         future: chapterList,
         builder: (context, snapshot) {
