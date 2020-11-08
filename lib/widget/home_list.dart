@@ -17,13 +17,33 @@ class HomeList extends StatelessWidget {
 
         if (snapshot.hasData) {
           var unfilteredData = snapshot.data as List<ChapterData>;
-          var filteredData = LanguageFilter.chapterData(unfilteredData, ['gb', 'fr']);
-          Sorter.chapterDataTimestamp(filteredData);
+          var data = LanguageFilter.chapterData(unfilteredData, ['gb', 'fr']);
+          Sorter.chapterDataTimestamp(data);
 
           return ListView.builder(
-            itemCount: filteredData.length,
+            itemCount: data.length,
             itemBuilder: (context, i) {
-              return ChapterItem(chapter: filteredData[i]);
+              return Column(
+                children: [
+                  i != 0 ? Divider() : Container(),
+                  _needMangaTitle(data, i) ?
+                  Column(
+                    children: [
+                      ListTile(
+                        title: Text(
+                          data[i].mangaTitle,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Divider(),
+                    ],
+                  ) :
+                  Container(),
+                  ChapterItem(chapter: data[i]),
+                ],
+              );
             },
           );
         } else {
@@ -33,5 +53,9 @@ class HomeList extends StatelessWidget {
         }
       },
     );
+  }
+
+  bool _needMangaTitle(List<ChapterData> data, int i) {
+    return i == 0 || data[i - 1].mangaId != data[i].mangaId;
   }
 }
