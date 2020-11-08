@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manga_reader/home_list.dart';
+import 'package:manga_reader/widget/home_list.dart';
 
 void main() {
   runApp(MyApp());
