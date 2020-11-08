@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manga_reader/widget/home_list.dart';
+import 'package:manga_reader/pages/home_list.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,13 +34,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Manga Reader'),
-      ),
-      drawer: Drawer(),
-      body: HomeList(),
-    );
+    return HomeList();
   }
 }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manga_reader/model/chapter_list/data.dart';
 import 'package:manga_reader/model/mangadex_api.dart';
-import 'package:manga_reader/widget/chapter_reader.dart';
+import 'package:manga_reader/pages/chapter_reader.dart';
 
 class ChapterItem extends StatelessWidget {
   ChapterData chapterData;
