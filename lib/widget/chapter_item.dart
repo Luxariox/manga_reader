@@ -4,7 +4,7 @@ import 'package:manga_reader/model/mangadex_api.dart';
 import 'package:manga_reader/pages/chapter_reader.dart';
 
 class ChapterItem extends StatelessWidget {
-  ChapterData chapterData;
+  final ChapterData chapterData;
 
   ChapterItem({@required this.chapterData});
 
