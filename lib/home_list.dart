@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manga_reader/model/chapter_list/data.dart';
 import 'package:manga_reader/model/language_filter.dart';
 import 'package:manga_reader/model/mangadex_api.dart';
+import 'package:manga_reader/model/sorter.dart';
 
 class HomeList extends StatelessWidget {
   @override
@@ -14,9 +15,9 @@ class HomeList extends StatelessWidget {
         }
 
         if (snapshot.hasData) {
-          var chaptersData = snapshot.data as List<ChapterData>;
-
-          var filteredData = LanguageFilter.filterChapterData(chaptersData, ['gb', 'fr']);
+          var unfilteredData = snapshot.data as List<ChapterData>;
+          var filteredData = LanguageFilter.chapterData(unfilteredData, ['gb', 'fr']);
+          Sorter.chapterDataTimestamp(filteredData);
 
           return ListView.builder(
             itemCount: filteredData.length,
