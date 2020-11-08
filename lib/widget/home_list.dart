@@ -41,7 +41,7 @@ class HomeList extends StatelessWidget {
                     ],
                   ) :
                   Container(),
-                  ChapterItem(chapter: data[i]),
+                  ChapterItem(chapterData: data[i]),
                 ],
               );
             },
