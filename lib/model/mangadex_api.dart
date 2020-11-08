@@ -9,12 +9,22 @@ class MangadexApi {
     return http.get(address);
   }
 
-  static Future<List<ChapterData>> getChaptersList(List<int> titles) async {
+  static Future<List<ChapterData>> _getChapterList(int title) async {
     var response = await _fetchAddress(
-        'https://mangadex.org/api/v2/title/${titles[0]}/chapters');
+        'https://mangadex.org/api/v2/title/$title/chapters');
 
     var respData = ChapterListResponse.fromJson(jsonDecode(response.body));
 
     return respData.data.chapters;
+  }
+
+  static Future<List<ChapterData>> getChaptersList(List<int> titles) async {
+    var result = <ChapterData>[];
+
+    for (var title in titles) {
+      result.addAll(await _getChapterList(title));
+    }
+
+    return result;
   }
 }
