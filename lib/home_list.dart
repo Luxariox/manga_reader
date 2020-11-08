@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_reader/model/chapter_list/data.dart';
 import 'package:manga_reader/model/mangadex_api.dart';
 
 class HomeList extends StatelessWidget {
@@ -7,26 +8,25 @@ class HomeList extends StatelessWidget {
     return FutureBuilder(
       future: MangadexApi.getChapterList(),
       builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.done:
-            {
-              var chaptersData = snapshot.data;
+        if (snapshot.hasError) {
+          print(snapshot.error);
+        }
 
-              return ListView.builder(
-                  itemCount: chaptersData.length,
-                  itemBuilder: (context, i) {
-                    return ListTile(
-                      title: Text(chaptersData[i]),
-                    );
-                  },
+        if (snapshot.hasData) {
+          var chaptersData = snapshot.data as List<ChapterData>;
+
+          return ListView.builder(
+            itemCount: chaptersData.length,
+            itemBuilder: (context, i) {
+              return ListTile(
+                title: Text(chaptersData[i].title),
               );
-            }
-          default:
-            {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+            },
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );

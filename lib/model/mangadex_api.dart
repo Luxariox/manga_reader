@@ -1,17 +1,20 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+import 'package:manga_reader/model/chapter_list/data.dart';
+import 'package:manga_reader/model/chapter_list/response.dart';
 
 class MangadexApi {
   static Future<http.Response> _fetchAddress(String address) async {
-    return await http.get(address);
+    return http.get(address);
   }
 
-  static Future<List<String>> getChapterList() async {
-    var response = await _fetchAddress('https://mangadex.org/api/v2/title/21063/chapters');
+  static Future<List<ChapterData>> getChapterList() async {
+    var response = await _fetchAddress(
+        'https://mangadex.org/api/v2/title/21063/chapters');
 
-    if (response.statusCode == 200) {
-      return ['test', 'test2', 'test3', 'test5'];
-    } else {
-      return null;
-    }
+    var respData = ChapterListResponse.fromJson(jsonDecode(response.body));
+
+    return respData.data.chapters;
   }
 }
