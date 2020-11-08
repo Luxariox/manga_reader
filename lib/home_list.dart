@@ -6,7 +6,7 @@ class HomeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: MangadexApi.getChapterList(),
+      future: MangadexApi.getChaptersList([21063]),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           print(snapshot.error);

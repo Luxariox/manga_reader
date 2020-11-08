@@ -9,9 +9,9 @@ class MangadexApi {
     return http.get(address);
   }
 
-  static Future<List<ChapterData>> getChapterList() async {
+  static Future<List<ChapterData>> getChaptersList(List<int> titles) async {
     var response = await _fetchAddress(
-        'https://mangadex.org/api/v2/title/21063/chapters');
+        'https://mangadex.org/api/v2/title/${titles[0]}/chapters');
 
     var respData = ChapterListResponse.fromJson(jsonDecode(response.body));
 
