@@ -52,4 +52,12 @@ class Chapter {
       server: json['server'],
     );
   }
+
+  String getTitle() {
+    if (title != null && title.isNotEmpty) {
+      return 'Ch. $chapter - $title';
+    } else {
+      return 'Ch. $chapter';
+    }
+  }
 }

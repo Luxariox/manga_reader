@@ -28,6 +28,9 @@ class _ChapterReaderState extends State<ChapterReader> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.chapter.getTitle()),
+      ),
       body: ListView.builder(
         itemCount: widget.chapter.pages.length,
         itemBuilder: (context, i) {
