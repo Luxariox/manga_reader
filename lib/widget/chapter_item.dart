@@ -8,18 +8,10 @@ class ChapterItem extends StatelessWidget {
 
   ChapterItem({@required this.chapterData});
 
-  String _getTitle() {
-    if (chapterData.title != null && chapterData.title.isNotEmpty) {
-      return 'Ch. ${chapterData.chapter} - ${chapterData.title}';
-    } else {
-      return 'Ch. ${chapterData.chapter}';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(_getTitle()),
+      title: Text(chapterData.getTitle()),
       onTap: () async {
         var chapter = await MangadexApi.getChapter(chapterData);
 
