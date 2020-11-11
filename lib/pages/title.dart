@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:manga_reader/model/user_data.dart';
+import 'package:provider/provider.dart';
 
 class TitlePage extends StatelessWidget {
   final Drawer drawer;
@@ -8,36 +9,40 @@ class TitlePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tmp = ['Naruto', 'DarkSasuke.xX'];
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Manga Reader'),
       ),
       drawer: drawer,
-      body: ListView.builder(
-        itemCount: tmp.length,
-        itemBuilder: (context, i) {
-          return ListTile(
-            title: Text(tmp[i]),
-            trailing: Row(
-              children: [
-                IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    /// Remove a title from the base
-                  },
-                )
-              ],
-            ),
+      body: Consumer<UserData>(
+        builder: (context, userData, child) {
+          return ListView.builder(
+            itemCount: userData.titles.length,
+            itemBuilder: (context, i) {
+              var keyList = userData.titles.keys.toList();
+              var valueList = userData.titles.values.toList();
+
+              return ListTile(
+                title: Text(valueList[i]),
+                trailing: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        /// Remove a title from the base
+                        userData.removeTitle(keyList[i]);
+                      },
+                    )
+                  ],
+                ),
+              );
+            },
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
+        onPressed: () {
           /// Add a title to the base
-          var pref = await SharedPreferences.getInstance();
-          pref.setStringList('titles', []);
         },
       ),
     );
