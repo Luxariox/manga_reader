@@ -3,7 +3,9 @@ import 'package:manga_reader/model/data/chapter_data.dart';
 import 'package:manga_reader/model/language_filter.dart';
 import 'package:manga_reader/model/mangadex_api.dart';
 import 'package:manga_reader/model/sorter.dart';
+import 'package:manga_reader/model/user_data.dart';
 import 'package:manga_reader/widget/chapter_item.dart';
+import 'package:provider/provider.dart';
 
 class HomeList extends StatefulWidget {
   final Drawer drawer;
@@ -91,6 +93,9 @@ class _HomeListState extends State<HomeList> {
   }
 
   Future<List<ChapterData>> _fetchChapterList() {
-    return MangadexApi.getChaptersList([21063, 17274]);
+    var userData = Provider.of<UserData>(context, listen: false);
+    var titles = userData.titles.keys.toList();
+
+    return MangadexApi.getChaptersList(titles);
   }
 }
