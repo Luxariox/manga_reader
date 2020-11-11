@@ -1,6 +1,6 @@
-import 'package:manga_reader/model/chapter/group.dart';
+import 'package:manga_reader/model/data/group.dart';
 
-class Chapter {
+class ChapterData {
   int id;
   String hash;
   int mangaId;
@@ -16,7 +16,7 @@ class Chapter {
   List<String> pages;
   String server;
 
-  Chapter({
+  ChapterData({
     this.id,
     this.hash,
     this.mangaId,
@@ -32,10 +32,10 @@ class Chapter {
     this.pages,
     this.server});
 
-  factory Chapter.fromJson(Map<String, dynamic> json) {
+  factory ChapterData.fromJson(Map<String, dynamic> json) {
     var groupsList = json['groups'] as List;
     
-    return Chapter(
+    return ChapterData(
       id: json['id'],
       hash: json['hash'],
       mangaId: json['mangaId'],

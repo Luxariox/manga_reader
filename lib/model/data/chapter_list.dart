@@ -1,6 +1,6 @@
-import 'package:manga_reader/model/chapter/group.dart';
+import 'package:manga_reader/model/data/group.dart';
 
-import 'data.dart';
+import 'chapter_data.dart';
 
 class ChapterListData {
   List<ChapterData> chapters;

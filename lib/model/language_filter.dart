@@ -1,4 +1,4 @@
-import 'package:manga_reader/model/chapter_list/data.dart';
+import 'package:manga_reader/model/data/chapter_data.dart';
 
 class LanguageFilter {
   static List<ChapterData> chapterData(List<ChapterData> original, List<String> languages) {

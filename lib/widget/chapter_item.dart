@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manga_reader/model/chapter_list/data.dart';
+import 'package:manga_reader/model/data/chapter_data.dart';
 import 'package:manga_reader/model/mangadex_api.dart';
 import 'package:manga_reader/pages/chapter_reader.dart';
 

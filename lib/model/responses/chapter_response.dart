@@ -1,9 +1,9 @@
-import 'chapter.dart';
+import '../data/chapter_data.dart';
 
 class ChapterResponse {
   int code;
   String status;
-  Chapter data;
+  ChapterData data;
 
   ChapterResponse({this.code, this.status, this.data});
 
@@ -11,7 +11,7 @@ class ChapterResponse {
     return ChapterResponse(
       code: json['code'],
       status: json['status'],
-      data: Chapter.fromJson(json['data']),
+      data: ChapterData.fromJson(json['data']),
     );
   }
 }

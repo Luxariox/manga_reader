@@ -1,4 +1,4 @@
-import 'list_data.dart';
+import '../data/chapter_list.dart';
 
 class ChapterListResponse {
   int code;
