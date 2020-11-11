@@ -5,10 +5,12 @@ class UserData extends ChangeNotifier {
   Map<int, String> titles;
   SharedPreferences _sharedPreferences;
 
-  UserData({this.titles});
+  UserData();
 
   Future<void> initialize() async {
     _sharedPreferences = await SharedPreferences.getInstance();
+
+    titles = {};
   }
 
   void loadData() {
@@ -16,10 +18,11 @@ class UserData extends ChangeNotifier {
   }
 
   void loadTitles() {
-    var titlesList = _sharedPreferences
-        .getStringList('titles')
-        .map((e) => int.parse(e))
-        .toList();
+    var savedData = _sharedPreferences.getStringList('titles');
+
+    var titlesList = (savedData != null) ?
+      savedData.map((e) => int.parse(e)).toList() :
+      [];
 
     for (var title in titlesList) {
       titles[title] = '$title';
