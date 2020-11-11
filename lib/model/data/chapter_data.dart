@@ -1,5 +1,3 @@
-import 'package:manga_reader/model/data/group.dart';
-
 class ChapterData {
   int id;
   String hash;
@@ -9,7 +7,7 @@ class ChapterData {
   String chapter;
   String title;
   String language;
-  List<Group> groups;
+  List<int> groups;
   int timestamp;
   int comments;
   String status;
@@ -33,8 +31,6 @@ class ChapterData {
     this.server});
 
   factory ChapterData.fromJson(Map<String, dynamic> json) {
-    var groupsList = json['groups'] as List;
-    
     return ChapterData(
       id: json['id'],
       hash: json['hash'],
@@ -44,11 +40,11 @@ class ChapterData {
       chapter: json['chapter'],
       title: json['title'],
       language: json['language'],
-      groups: groupsList.map((e) => Group.fromJson(e)).toList(),
+      groups: List<int>.from(json['groups']),
       timestamp: json['timestamp'],
       comments: json['comments'],
       status: json['status'],
-      pages: List<String>.from(json['pages']),
+      pages: json['pages'] != null ? List<String>.from(json['pages']) : null,
       server: json['server'],
     );
   }
