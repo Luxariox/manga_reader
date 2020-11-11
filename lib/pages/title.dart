@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:manga_reader/model/user_data.dart';
 import 'package:provider/provider.dart';
 
@@ -24,16 +25,36 @@ class TitlePage extends StatelessWidget {
 
               return ListTile(
                 title: Text(valueList[i]),
-                trailing: Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () {
-                        /// Remove a title from the base
-                        userData.removeTitle(keyList[i]);
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    /// Remove a title from the base
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Supprimer'),
+                          content: Text('Voulez-vous vraiment supprimer ce titre'),
+                          actions: [
+                            FlatButton(
+                              child: Text('Annuler'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                            FlatButton(
+                              child: Text('Supprimer'),
+                              color: Colors.red,
+                              onPressed: () {
+                                userData.removeTitle(keyList[i]);
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
                       },
-                    )
-                  ],
+                    );
+                  },
                 ),
               );
             },
@@ -41,8 +62,50 @@ class TitlePage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
         onPressed: () {
           /// Add a title to the base
+          showDialog<int>(
+            context: context,
+            builder: (context) {
+              int id;
+
+              return AlertDialog(
+                title: Text('Ajout'),
+                content: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'ID',
+                  ),
+                  onChanged: (text) {
+                    id = int.parse(text);
+                  },
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]*')),
+                  ],
+                ),
+                actions: [
+                  FlatButton(
+                    child: Text('Annuler'),
+                    onPressed: () {
+                      Navigator.pop(context, null);
+                    },
+                  ),
+                  FlatButton(
+                    child: Text('Valider'),
+                    onPressed: () {
+                      if (id != null && id != 0) {
+                        Navigator.pop(context, id);
+                      }
+                    },
+                  ),
+                ],
+              );
+            },
+          ).then((id) {
+            if (id != null) {
+              Provider.of<UserData>(context, listen: false).addTitle(id, '$id');
+            }
+          });
         },
       ),
     );
