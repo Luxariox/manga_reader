@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manga_reader/pages/home_list.dart';
+import 'package:manga_reader/routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,6 +9,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var drawer = Drawer();
+
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -15,7 +18,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeList(drawer: Drawer()),
+      routes: {
+        Routes.home: (_) => HomeList(drawer: drawer),
+      },
     );
   }
 }
