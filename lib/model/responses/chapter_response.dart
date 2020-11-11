@@ -1,9 +1,9 @@
-import '../data/chapter_data.dart';
+import 'package:manga_reader/model/data/chapter_detailled_data.dart';
 
 class ChapterResponse {
   int code;
   String status;
-  ChapterData data;
+  ChapterDetailedData data;
 
   ChapterResponse({this.code, this.status, this.data});
 
@@ -11,7 +11,7 @@ class ChapterResponse {
     return ChapterResponse(
       code: json['code'],
       status: json['status'],
-      data: ChapterData.fromJson(json['data']),
+      data: ChapterDetailedData.fromJson(json['data']),
     );
   }
 }

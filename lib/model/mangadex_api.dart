@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:manga_reader/model/data/chapter_data.dart';
+import 'package:manga_reader/model/data/chapter_detailled_data.dart';
 import 'package:manga_reader/model/responses/chapter_response.dart';
 import 'package:manga_reader/model/responses/chapter_list_response.dart';
 
@@ -29,7 +30,7 @@ class MangadexApi {
     return result;
   }
 
-  static Future<ChapterData> getChapter(ChapterData chapterData) async {
+  static Future<ChapterDetailedData> getChapter(ChapterData chapterData) async {
     var response = await _fetchAddress(
         'https://mangadex.org/api/v2/chapter/${chapterData.id}');
 

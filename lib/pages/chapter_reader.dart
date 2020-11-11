@@ -2,10 +2,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:manga_reader/model/data/chapter_data.dart';
+import 'package:manga_reader/model/data/chapter_detailled_data.dart';
 
 class ChapterReader extends StatefulWidget {
-  final ChapterData chapter;
+  final ChapterDetailedData chapter;
 
   ChapterReader({@required this.chapter});
 
